@@ -1,0 +1,28 @@
+name: "Bug report"
+description: "Something isn’t working"
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the bug and what you expected.
+      placeholder: "Nav overlaps hero on mobile…"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1) Resize to 375px\n2) Tap menu"
+  - type: input
+    id: file
+    attributes:
+      label: Page / file
+      placeholder: "index.html"
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options: ["P1 - critical", "P2 - high", "P3 - normal"]
+      default: 2
