@@ -1,6 +1,3 @@
 # Auto-request reviews from the leads team for all files
-* @gsu-swe-club/leads
 
-# Optional: more granular ownership examples
-/assets/css/* @gsu-swe-club/ui-lead
-/index.html   @gsu-swe-club/leads
+- @Governors-State-Technology-Clubs/leads
