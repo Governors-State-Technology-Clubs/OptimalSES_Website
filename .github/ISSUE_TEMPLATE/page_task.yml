@@ -1,0 +1,21 @@
+name: "Page task"
+description: "Work for a specific page (copy + layout)"
+labels: ["page", "good-first-issue"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      placeholder: "services.html"
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      placeholder: "- Add hero section\n- Two service cards\n- CTA to projects"
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      placeholder: "- Passes PR checklist\n- Mobile works\n- No console errors"
