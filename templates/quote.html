@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% block title %}Get a Quote - Optimal SES{% endblock
+%} {% block content %}
+<section class="quote-section">
+  <div class="container">
+    <h1 class="page-title">Quote</h1>
+
+    <form class="quote-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input id="fullName" type="text" name="fullName" required />
+        </div>
+
+        <div class="form-group">
+          <label for="quoteEmail">Email</label>
+          <input id="quoteEmail" type="email" name="email" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="quotePhone">Phone</label>
+        <input id="quotePhone" type="tel" name="phone" required />
+      </div>
+
+      <div class="form-group">
+        <label for="projectType">Project Type</label>
+        <select id="projectType" name="projectType" required>
+          <option value="">Select Project Type</option>
+          <option>New Construction</option>
+          <option>Renovation</option>
+          <option>Commercial Building</option>
+          <option>Residential Home</option>
+          <option>Interior Remodel</option>
+          <option>Deck Installation</option>
+          <option>Outdoor Structure</option>
+          <option>Other Specialty Service</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="projectDetails">Project Details</label>
+        <textarea
+          id="projectDetails"
+          name="projectDetails"
+          rows="7"
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Request a Quote</button>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

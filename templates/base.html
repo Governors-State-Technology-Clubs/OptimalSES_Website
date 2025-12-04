@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Optimal SES{% endblock %}</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <input type="checkbox" id="nav-toggle-checkbox" />
+      <div class="nav-container">
+        <a href="{{ url_for('home') }}" class="nav-logo">
+          <div class="logo-icon">🏗</div>
+          <span class="logo-text">
+            OPTIMAL<br /><span class="logo-sub">SES</span>
+          </span>
+        </a>
+
+        <div class="nav-menu" id="navMenu">
+          <a
+            href="{{ url_for('home') }}"
+            class="nav-link {% if active_page=='home' %}active{% endif %}"
+            >Home</a
+          >
+          <a
+            href="{{ url_for('about') }}"
+            class="nav-link {% if active_page=='about' %}active{% endif %}"
+            >About</a
+          >
+          <a
+            href="{{ url_for('projects') }}"
+            class="nav-link {% if active_page=='projects' %}active{% endif %}"
+            >Projects</a
+          >
+          <a
+            href="{{ url_for('testimonials') }}"
+            class="nav-link {% if active_page=='testimonials' %}active{% endif %}"
+            >Testimonials</a
+          >
+          <a
+            href="{{ url_for('contact') }}"
+            class="nav-link {% if active_page=='contact' %}active{% endif %}"
+            >Contact</a
+          >
+          <a
+            href="{{ url_for('quote') }}"
+            class="nav-link nav-cta {% if active_page=='quote' %}active{% endif %}"
+            >Quote</a
+          >
+        </div>
+
+        <label for="nav-toggle-checkbox" class="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+      </div>
+    </nav>
+
+    <main>{% block content %}{% endblock %}</main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <div class="logo-icon">🏗</div>
+            <span class="logo-text">OPTIMAL SES</span>
+          </div>
+          <div class="footer-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('projects') }}">Projects</a>
+            <a href="{{ url_for('testimonials') }}">Testimonials</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+            <a href="{{ url_for('quote') }}">Quote</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; GSU SWE Club. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
