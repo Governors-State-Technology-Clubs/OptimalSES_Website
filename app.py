@@ -12,7 +12,6 @@ ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
 def home():
     return render_template("index.html", active_page="home")
 
-
 @app.route("/about")
 def about():
     return render_template("about.html", active_page="about")
