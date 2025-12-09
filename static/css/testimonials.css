@@ -1,0 +1,136 @@
+*{
+  background-color: black;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+
+  color: black;
+}
+
+header {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 20px;
+}
+
+h1{
+  color: white;
+}
+
+.navigationLinks{
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  box-sizing: border-box;
+}
+
+.navigationLinks nav{
+  flex: 1;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 16px;
+    align-items: center;
+  text-align: justify;
+  width: 100%;
+  justify-content: space-between;
+}
+
+ul li a{
+  color: white;
+  text-underline-offset: unset;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+
+h1 {
+  background-color: black;
+  text-align: center;
+  margin: 30px;
+}
+
+.cards {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin: 0 20px;
+}
+
+.card {
+  width: 250px;
+  padding: 16px;
+  text-align: center;
+}
+
+.card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.quote {
+  font-style: italic;
+  margin: 12px 0;
+  color: white;
+  text-align: left;
+}
+
+.name {
+  font-weight: bold;
+  text-align: left;
+  color: white;
+}
+
+.centerButton {
+  text-align: center;
+  margin: 30px 0;
+  margin-bottom: 20px;
+}
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #ffffff; 
+  background-color: #ff7f00;
+  border-radius: 6px;
+  border: 1px solid #e76b00;
+  font-weight: 700;
+}
+
+.button:hover {
+  background-color: #ff9500;
+}
+
+.centerButton .button {
+  background-color: #ff7f00;
+  color: #ffffff;
+  border-color: #e76b00;
+}
+
+#wrapper{
+    width: 80%;
+    min-width: 900px;
+    max-width: 1280px;
+    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+}
+
+#herologo{
+  height: 100px;
+  flex: 0 0 250px;
+  width: 250px;
+  background-image: url(../img/Optimal_Main_Logo.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left center;
+  margin-right: 20px;
+}

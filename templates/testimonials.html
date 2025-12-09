@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Testimonials</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/testimonials.css') }}" />
+</head>
+<body><div id="wrapper">
+  <header>
+    <div class="navigationLinks">
+      <div id="herologo"></div>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>Testimonials</h1>
+
+    <section class="cards">
+      <article class="card">
+        <img src="{{ url_for('static', filename='img/blankavi.jpg') }}" alt="Tes1" />
+        <p class="quote">“Optimal SES delivered ourr office project on time and with excellent quality”</p>
+        <p class="name">John D</p>
+      </article>
+
+      <article class="card">
+        <img src="{{ url_for('static', filename='img/blankavi.jpg') }}" alt="Test2" />
+        <p class="quote">“Great work on our facility renovation and reliable team!”</p>
+        <p class="name">Sarah M</p>
+      </article>
+
+      <article class="card">
+        <img src="{{ url_for('static', filename='img/blankavi.jpg') }}" alt="Test3" />
+        <p class="quote">“Very satisfied with the specialty services. High standards and attention to detail.”</p>
+        <p class="name">David R</p>
+      </article>
+    </section>
+
+    <div class="centerButton">
+      <a href="#" class="button">Get a Quote</a>
+    </div>
+  </main>
+</div></body>
+</html>
