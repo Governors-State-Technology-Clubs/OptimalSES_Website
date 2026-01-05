@@ -1,0 +1,53 @@
+{% extends "base.html" %} {% block title %}Optimal SES - Full-Service
+Construction{% endblock %} {% block content %}
+<section class="hero">
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+  />
+  <div class="hero-content">
+    <h1 class="hero-title">FULL-SERVICE<br />CONSTRUCTION</h1>
+    <p class="hero-subtitle">GENERAL CONTRACTING &amp; SPECIALTY</p>
+    <a href="{{ url_for('quote') }}" class="btn btn-primary">Get a Quote</a>
+  </div>
+
+  <div class="hero-cards">
+    <div class="service-card">
+      <div class="card-icon">🧱</div>
+      <h3>GENERAL<br />CONTRACTING</h3>
+      <p>Comprehensive construction services from start to finish.</p>
+    </div>
+    <div class="service-card">
+      <div class="card-icon">⚙️</div>
+      <h3>SPECIALTY<br />SERVICES</h3>
+      <p>Specialized solutions tailored to unique project needs.</p>
+    </div>
+    <div class="service-card">
+      <div class="card-icon">📞</div>
+      <h3>CONTACT US</h3>
+      <p>Get in touch with our team to discuss your project.</p>
+    </div>
+  </div>
+</section>
+
+<section class="projects-section">
+  <div class="container">
+    <h2 class="section-title">Projects</h2>
+
+    <!-- using placeholder blocks instead of images -->
+    <div class="projects-grid">
+      <div class="project-card placeholder-card"></div>
+      <div class="project-card placeholder-card"></div>
+      <div class="project-card placeholder-card"></div>
+      <div class="project-card placeholder-card"></div>
+    </div>
+
+    <div class="cta-box">
+      <h3>Looking for a<br />construction partner?</h3>
+      <a href="{{ url_for('quote') }}" class="btn btn-secondary"
+        >Request a Quote</a
+      >
+    </div>
+  </div>
+</section>
+{% endblock %}

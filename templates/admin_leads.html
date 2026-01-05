@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Leads Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Leads Dashboard</h1>
+
+    <p><a href="{{ url_for('admin_logout') }}">Log out</a></p>
+
+    <table border="1" cellpadding="6">
+      <tr>
+        <th>ID</th>
+        <th>Type</th>
+        <th>Created</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Service</th>
+        <th>Message</th>
+      </tr>
+
+      {% for lead in leads %}
+      <tr>
+        <td>{{ lead.id }}</td>
+        <td>{{ lead.form_type }}</td>
+        <td>{{ lead.created_at.strftime("%Y-%m-%d %H:%M") }}</td>
+        <td>{{ lead.name }}</td>
+        <td>{{ lead.email }}</td>
+        <td>{{ lead.phone }}</td>
+        <td>{{ lead.service }}</td>
+        <td>{{ lead.message }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
