@@ -1,0 +1,91 @@
+{% extends "base.html" %} {% block title %}Testimonials - Optimal SES{% endblock
+%} {% block content %}
+<section class="testimonials-section">
+  <div class="container">
+    <h1 class="page-title">Testimonials</h1>
+
+    <p class="testimonials-intro">
+      Don't just take our word for it. Here's what our satisfied clients have to
+      say about working with Optimal SES.
+    </p>
+
+    <div class="testimonial-stats">
+      <div class="stat-card">
+        <span class="stat-number">500+</span>
+        <span class="stat-label">Projects Completed</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">20+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">98%</span>
+        <span class="stat-label">Client Satisfaction</span>
+      </div>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="placeholder-avatar"></div>
+        <p class="testimonial-text">
+          "Optimal SES transformed our vision into reality. The team was
+          professional, punctual, and delivered exceptional results."
+        </p>
+        <p class="testimonial-author">Sarah Johnson</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="placeholder-avatar"></div>
+        <p class="testimonial-text">
+          "Working with this team was seamless. They communicated every step of
+          the way and finished ahead of schedule."
+        </p>
+        <p class="testimonial-author">Michael Chen</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="placeholder-avatar"></div>
+        <p class="testimonial-text">
+          "The quality of craftsmanship is unmatched. I'd recommend Optimal SES
+          to anyone looking for reliable construction services."
+        </p>
+        <p class="testimonial-author">Jessica Martinez</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="placeholder-avatar"></div>
+        <p class="testimonial-text">
+          "From initial consultation to project completion, everything was
+          handled with professionalism and attention to detail."
+        </p>
+        <p class="testimonial-author">Robert Thompson</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="placeholder-avatar"></div>
+        <p class="testimonial-text">
+          "Excellent communication and top-notch workmanship. They made the
+          entire process stress-free and enjoyable."
+        </p>
+        <p class="testimonial-author">Emily Davis</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="placeholder-avatar"></div>
+        <p class="testimonial-text">
+          "I was impressed by their attention to detail and commitment to
+          completing the project on time and within budget."
+        </p>
+        <p class="testimonial-author">David Wilson</p>
+      </div>
+    </div>
+
+    <div class="testimonials-cta">
+      <p style="margin-bottom: 1rem; color: #dcdcdc">
+        Ready to experience our quality and professionalism?
+      </p>
+      <a href="{{ url_for('quote') }}" class="btn btn-primary">Get a Quote</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
