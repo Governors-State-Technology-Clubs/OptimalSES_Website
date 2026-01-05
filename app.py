@@ -24,6 +24,7 @@ def projects():
 
 @app.route("/testimonials")
 def testimonials():
+    #wil be updated soon
     return render_template("testimonials.html", active_page="testimonials")
 
 
