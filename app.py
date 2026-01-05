@@ -1,9 +1,12 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, session
+from dotenv import load_dotenv
+
 import os
 
+load_dotenv()
 app = Flask(__name__)
 
-app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-only-change-me")
 
 ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME")
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
