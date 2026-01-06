@@ -215,7 +215,7 @@ Message:
 {sanitize_for_email(message)}
                 """
             )
-            mail.send(msg)
+            #mail.send(msg)
 
             logger.info(f"Contact submission from {email}")
             flash("Thank you for reaching out! We'll get back to you soon.", "success")
@@ -277,7 +277,7 @@ Project Details:
 {sanitize_for_email(message)}
                 """
             )
-            mail.send(msg)
+            #mail.send(msg)
 
             logger.info(f"Quote submission from {email} for {service}")
             flash("Your quote request has been submitted! We'll get back to you soon.", "success")
