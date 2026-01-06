@@ -1,42 +1,226 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Leads Dashboard</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-  </head>
-  <body>
-    <h1>Leads Dashboard</h1>
+{% extends "base.html" %} {% block title %}Admin - Leads Dashboard{% endblock %}
+{% block content %}
+<section style="padding: 2rem 0; background: #1a1a1a; min-height: 100vh">
+  <div class="container">
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      "
+    >
+      <h1 class="page-title" style="color: white">Leads Dashboard</h1>
+      <a
+        href="{{ url_for('admin_logout') }}"
+        class="btn btn-primary"
+        style="background: #ff6b35"
+        >Log out</a
+      >
+    </div>
 
-    <p><a href="{{ url_for('admin_logout') }}">Log out</a></p>
+    {% if leads %}
+    <div
+      style="
+        overflow-x: auto;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      "
+    >
+      <table style="width: 100%; border-collapse: collapse">
+        <thead>
+          <tr
+            style="
+              background: linear-gradient(135deg, #333 0%, #1a1a1a 100%);
+              color: white;
+            "
+          >
+            <th
+              style="
+                padding: 16px;
+                text-align: left;
+                border-bottom: 3px solid #ff6b35;
+                font-weight: 600;
+                font-size: 14px;
+              "
+            >
+              ID
+            </th>
+            <th
+              style="
+                padding: 16px;
+                text-align: left;
+                border-bottom: 3px solid #ff6b35;
+                font-weight: 600;
+                font-size: 14px;
+              "
+            >
+              Type
+            </th>
+            <th
+              style="
+                padding: 16px;
+                text-align: left;
+                border-bottom: 3px solid #ff6b35;
+                font-weight: 600;
+                font-size: 14px;
+              "
+            >
+              Created
+            </th>
+            <th
+              style="
+                padding: 16px;
+                text-align: left;
+                border-bottom: 3px solid #ff6b35;
+                font-weight: 600;
+                font-size: 14px;
+              "
+            >
+              Name
+            </th>
+            <th
+              style="
+                padding: 16px;
+                text-align: left;
+                border-bottom: 3px solid #ff6b35;
+                font-weight: 600;
+                font-size: 14px;
+              "
+            >
+              Email
+            </th>
+            <th
+              style="
+                padding: 16px;
+                text-align: left;
+                border-bottom: 3px solid #ff6b35;
+                font-weight: 600;
+                font-size: 14px;
+              "
+            >
+              Phone
+            </th>
+            <th
+              style="
+                padding: 16px;
+                text-align: left;
+                border-bottom: 3px solid #ff6b35;
+                font-weight: 600;
+                font-size: 14px;
+              "
+            >
+              Service/Project
+            </th>
+            <th
+              style="
+                padding: 16px;
+                text-align: left;
+                border-bottom: 3px solid #ff6b35;
+                font-weight: 600;
+                font-size: 14px;
+              "
+            >
+              Message
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for lead in leads %}
+          <tr
+            style="border-bottom: 1px solid #e0e0e0; background: {% if loop.index % 2 == 0 %}#f5f5f5{% else %}white{% endif %}; transition: background 0.2s;"
+          >
+            <td style="padding: 16px; color: #333; font-weight: 500">
+              {{ lead.id }}
+            </td>
+            <td style="padding: 16px">
+              <span
+                style="padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; {% if lead.form_type == 'contact' %}background: #007bff; color: white;{% else %}background: #28a745; color: white;{% endif %}"
+              >
+                {{ lead.form_type.capitalize() }}
+              </span>
+            </td>
+            <td style="padding: 16px; color: #555; font-size: 14px">
+              {{ lead.created_at.strftime("%Y-%m-%d %H:%M") }}
+            </td>
+            <td style="padding: 16px; color: #333; font-weight: 500">
+              {{ lead.name }}
+            </td>
+            <td style="padding: 16px; color: #555">
+              <a
+                href="mailto:{{ lead.email }}"
+                style="color: #007bff; text-decoration: none"
+                >{{ lead.email }}</a
+              >
+            </td>
+            <td style="padding: 16px; color: #555">{{ lead.phone or "—" }}</td>
+            <td style="padding: 16px; color: #555">
+              {{ lead.service or "—" }}
+            </td>
+            <td style="padding: 16px">
+              <details style="cursor: pointer">
+                <summary
+                  style="
+                    color: #666;
+                    font-size: 14px;
+                    user-select: none;
+                    font-weight: 500;
+                  "
+                >
+                  📄 View Message
+                </summary>
+                <div
+                  style="
+                    margin-top: 12px;
+                    padding: 14px;
+                    background: #f9f9f9;
+                    border-left: 4px solid #ff6b35;
+                    border-radius: 4px;
+                    color: #333;
+                    font-size: 14px;
+                    line-height: 1.6;
+                  "
+                >
+                  {{ lead.message }}
+                </div>
+              </details>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
 
-    <table border="1" cellpadding="6">
-      <tr>
-        <th>ID</th>
-        <th>Type</th>
-        <th>Created</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Service</th>
-        <th>Message</th>
-      </tr>
+    <div
+      style="
+        margin-top: 2rem;
+        padding: 1rem;
+        background: rgba(255, 107, 53, 0.1);
+        border-left: 4px solid #ff6b35;
+        border-radius: 4px;
+      "
+    >
+      <p style="color: #333; margin: 0; font-size: 16px">
+        <strong>📊 Total Leads:</strong> {{ leads|length }}
+      </p>
+    </div>
 
-      {% for lead in leads %}
-      <tr>
-        <td>{{ lead.id }}</td>
-        <td>{{ lead.form_type }}</td>
-        <td>{{ lead.created_at.strftime("%Y-%m-%d %H:%M") }}</td>
-        <td>{{ lead.name }}</td>
-        <td>{{ lead.email }}</td>
-        <td>{{ lead.phone }}</td>
-        <td>{{ lead.service }}</td>
-        <td>{{ lead.message }}</td>
-      </tr>
-      {% endfor %}
-    </table>
-  </body>
-</html>
+    {% else %}
+    <div
+      style="
+        background: white;
+        padding: 3rem 2rem;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <p style="color: #999; font-size: 1.1rem; margin: 0">
+        📭 No leads yet. Check back later!
+      </p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
