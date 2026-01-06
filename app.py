@@ -63,6 +63,9 @@ else:
 db.init_app(app)
 migrate = Migrate(app, db)
 mail = Mail(app)
+
+with app.app_context():
+    db.create_all()
 # ===== SECURITY: CSRF PROTECTION =====
 csrf = CSRFProtect(app)
 
