@@ -1,8 +1,0 @@
-{
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "files.trimTrailingWhitespace": true,
-  "files.insertFinalNewline": true,
-
-  "python.analysis.extraPaths": ["./.venv/lib/python3.12/site-packages"]
-}
