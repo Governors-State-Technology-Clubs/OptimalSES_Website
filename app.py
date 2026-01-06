@@ -50,15 +50,19 @@ app.config["SESSION_REFRESH_EACH_REQUEST"] = True
 # ===== EMAIL CONFIGURATION =====
 app.config["MAIL_SERVER"] = os.environ.get("MAIL_SERVER")
 app.config["MAIL_PORT"] = int(os.environ.get("MAIL_PORT", 587))
-app.config["MAIL_USE_TLS"] = os.environ.get("MAIL_USE_TLS", True)
 app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
 app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
 app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("MAIL_FROM_EMAIL")
 
+# Handle both port 465 (SSL) and 587 (TLS)
+if app.config["MAIL_PORT"] == 465:
+    app.config["MAIL_USE_SSL"] = True
+    app.config["MAIL_USE_TLS"] = False
+else:
+    app.config["MAIL_USE_TLS"] = True
 db.init_app(app)
 migrate = Migrate(app, db)
 mail = Mail(app)
-
 # ===== SECURITY: CSRF PROTECTION =====
 csrf = CSRFProtect(app)
 
@@ -160,7 +164,7 @@ def testimonials():
     return render_template("testimonials.html", active_page="testimonials")
 
 @app.route("/contact", methods=["GET", "POST"])
-@limiter.limit("3 per hour")
+@limiter.limit("10 per hour")
 def contact():
     if request.method == "POST":
         # ✅ Extract and clean inputs
@@ -220,7 +224,7 @@ Message:
     return render_template("contact.html", active_page="contact")
 
 @app.route("/quote", methods=["GET", "POST"])
-@limiter.limit("3 per hour")
+@limiter.limit("10 per hour")
 def quote():
     if request.method == "POST":
         # ✅ Extract and clean inputs
@@ -334,4 +338,4 @@ def server_error(e):
     return render_template("500.html"), 500
 
 if __name__ == "__main__":
-    app.run(debug=False)  # ❌ NEVER debug=True in production
+    app.run(debug=False)
