@@ -1,12 +1,17 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, session
+from flask_migrate import Migrate
 from dotenv import load_dotenv
-
+from models import db
 import os
-
 load_dotenv()
+
 app = Flask(__name__)
 
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///instance/app.db")
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-only-change-me")
+db.init_app(app)
+migrate = Migrate(app, db)
 
 ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME")
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
