@@ -139,9 +139,7 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 # Database files (local development only)
-instance/app.db
-instance/
-
+instance/*.log
 # Virtual environment
 .venv/
 venv/
