@@ -20,7 +20,9 @@
     {% endfor %} {% endif %} {% endwith %}
 
     <form class="quote-form" method="post" action="{{ url_for('quote') }}">
-      {{ csrf_token() }}
+      <!-- ✅ CSRF TOKEN - REQUIRED FOR SECURITY -->
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
       <div class="form-row">
         <div class="form-group">
           <label for="fullName">Full Name</label>
