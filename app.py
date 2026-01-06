@@ -26,10 +26,10 @@ BASE_DIR = Path(__file__).parent
 INSTANCE_DIR = BASE_DIR / "instance"
 INSTANCE_DIR.mkdir(exist_ok=True)
 
-DATABASE_PATH = INSTANCE_DIR / "app.db"
+
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
     "DATABASE_URL",
-    f"sqlite:///{DATABASE_PATH}"
+    "sqlite:///instance/app.db"
 )
 app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
     "pool_pre_ping": True,
