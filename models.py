@@ -13,7 +13,7 @@ class Lead(db.Model):
     phone = db.Column(db.String(20), nullable=True) # Optional (contact forms might not have it)
     service = db.Column(db.String(100), nullable=True) # Project type (quote only)
     message = db.Column(db.Text, nullable=False) # Contact message or project details
-    created_at = db.Column(db.DateTime, nullable = False, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable = False, default=datetime.now)
 
     def __repr__(self):
         return f"<Lead id = {self.id} form_type = {self.form_type} name={self.name}>"

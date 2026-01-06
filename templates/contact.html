@@ -4,6 +4,16 @@
   <div class="container">
     <h1 class="page-title">Get in Touch</h1>
 
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, msg in messages %}
+    <div
+      style="padding: 12px 16px; margin-bottom: 16px; border-radius: 4px; text-align: center; {% if category == 'success' %}background: #28a745; color: white;{% else %}background: #dc3545; color: white;{% endif %}"
+    >
+      {{ msg }}
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+
     <div class="contact-info">
       <div class="contact-item">
         <span class="contact-icon">✉</span>
@@ -19,7 +29,7 @@
       </div>
     </div>
 
-    <form class="contact-form">
+    <form class="contact-form" method="post" action="{{ url_for('contact') }}">
       <div class="form-group">
         <label for="name">Name</label>
         <input id="name" type="text" name="name" required />
