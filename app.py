@@ -31,6 +31,10 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
     "DATABASE_URL",
     f"sqlite:///{DATABASE_PATH}"
 )
+app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
+    "pool_pre_ping": True,
+    "pool_recycle": 3600,
+}
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # ===== SECURITY: SECRET_KEY =====
