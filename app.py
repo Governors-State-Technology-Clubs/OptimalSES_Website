@@ -18,17 +18,22 @@ import logging
 def send_async_email(msg):
     """Send email in background thread with Flask app context"""
     def send_mail():
-        with app.app_context():  # ← CRITICAL: Push app context to thread
+        with app.app_context():
             try:
+                logger.info(f"🔍 Attempting to send email to {msg.recipients}")
+                logger.info(f"📧 MAIL_SERVER={app.config.get('MAIL_SERVER')}")
+                logger.info(f"📧 MAIL_PORT={app.config.get('MAIL_PORT')}")
+                logger.info(f"📧 MAIL_USERNAME={app.config.get('MAIL_USERNAME')}")
+                
                 mail.send(msg)
-                logger.info(f"Email sent to {msg.recipients}")
+                logger.info(f"✅ Email sent to {msg.recipients}")
             except Exception as e:
-                logger.error(f"Failed to send email: {e}")
+                logger.error(f"❌ Failed to send email: {type(e).__name__}: {str(e)}")
     
     thread = Thread(target=send_mail)
     thread.daemon = True
     thread.start()
-    
+
 load_dotenv()
 
 app = Flask(__name__)
