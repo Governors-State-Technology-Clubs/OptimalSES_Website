@@ -87,9 +87,9 @@ def sanitize_for_email(text):
     """Remove/escape newlines and control characters that could inject headers"""
     if not text:
         return ""
-    # Replace line breaks with spaces
+
     text = text.replace("\n", " ").replace("\r", " ")
-    # Remove other control characters
+  
     text = "".join(c for c in text if ord(c) >= 32 or c in "\t")
     return text.strip()
 
@@ -199,7 +199,6 @@ def contact():
             db.session.add(lead)
             db.session.commit()
 
-            # ✅ Send email with sanitized content
             admin_email = os.environ.get("ADMIN_EMAIL")
             msg = Message(
                 subject=f"New Contact Submission from {sanitize_for_email(name)}",
@@ -215,7 +214,7 @@ Message:
 {sanitize_for_email(message)}
                 """
             )
-            #mail.send(msg)
+            mail.send(msg)
 
             logger.info(f"Contact submission from {email}")
             flash("Thank you for reaching out! We'll get back to you soon.", "success")
@@ -277,7 +276,7 @@ Project Details:
 {sanitize_for_email(message)}
                 """
             )
-            #mail.send(msg)
+            mail.send(msg)
 
             logger.info(f"Quote submission from {email} for {service}")
             flash("Your quote request has been submitted! We'll get back to you soon.", "success")
