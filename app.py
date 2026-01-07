@@ -5,6 +5,7 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_wtf.csrf import CSRFProtect
 from flask_limiter.errors import RateLimitExceeded
+from threading import Thread
 from dotenv import load_dotenv
 from pathlib import Path
 from models import db, Lead
@@ -13,6 +14,19 @@ from email_validator import validate_email, EmailNotValidError
 import os
 import logging
 
+
+def send_async_email(msg):
+    """Send email in background thread to prevent blocking worker"""
+    def send_mail():
+        try:
+            mail.send(msg)
+            logger.info(f"Email sent to {msg.recipients}")
+        except Exception as e:
+            logger.error(f"Failed to send email: {e}")
+    
+    thread = Thread(target=send_mail)
+    thread.daemon = True
+    thread.start()
 load_dotenv()
 
 app = Flask(__name__)
@@ -214,7 +228,7 @@ Message:
 {sanitize_for_email(message)}
                 """
             )
-            mail.send(msg)
+            send_async_email(msg)
 
             logger.info(f"Contact submission from {email}")
             flash("Thank you for reaching out! We'll get back to you soon.", "success")
@@ -276,7 +290,7 @@ Project Details:
 {sanitize_for_email(message)}
                 """
             )
-            mail.send(msg)
+            send_async_email(msg)
 
             logger.info(f"Quote submission from {email} for {service}")
             flash("Your quote request has been submitted! We'll get back to you soon.", "success")
