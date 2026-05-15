@@ -304,6 +304,14 @@ a {
   margin-bottom: 24px;
 }
 
+/* 2-column variant used on the home page preview */
+.gallery-grid--2col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Individual project card */
 
 .gallery-card {
