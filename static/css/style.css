@@ -11,6 +11,7 @@
 html,
 body {
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -770,5 +771,31 @@ a {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+  }
+
+  .nav-logo-img {
+    height: 60px;
+    margin-top: 8px;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.7rem;
+  }
+
+  .filter-bar {
+    gap: 8px;
+  }
+
+  .filter-btn {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.85rem;
   }
 }
