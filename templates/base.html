@@ -22,10 +22,7 @@
       <input type="checkbox" id="nav-toggle-checkbox" />
       <div class="nav-container">
         <a href="{{ url_for('home') }}" class="nav-logo">
-          <div class="logo-icon">🏗</div>
-          <span class="logo-text">
-            OPTIMAL<br /><span class="logo-sub">SES</span>
-          </span>
+          <img src="{{ url_for('static', filename='img/optimal-logo.png') }}" alt="Optimal SES Logo" class="nav-logo-img" />
         </a>
 
         <div class="nav-menu" id="navMenu">
