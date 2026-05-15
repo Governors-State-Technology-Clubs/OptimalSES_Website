@@ -30,24 +30,153 @@ Construction{% endblock %} {% block content %}
   </div>
 </section>
 
-<section class="projects-section">
+<section class="gallery-section">
   <div class="container">
-    <h2 class="section-title">Projects</h2>
+    <h2 class="section-title">Our Work</h2>
+    <p class="gallery-intro">
+      From asphalt resurfacing and concrete foundations to full new construction,
+      every job we take on is built to last. See it for yourself below.
+    </p>
 
-    <!-- using placeholder blocks instead of images -->
-    <div class="projects-grid">
-      <div class="project-card placeholder-card"></div>
-      <div class="project-card placeholder-card"></div>
-      <div class="project-card placeholder-card"></div>
-      <div class="project-card placeholder-card"></div>
+    <!-- Filter Buttons -->
+    <!-- To add a new category: add a button with data-filter="your-category"
+         then add data-category="your-category" to the matching cards below -->
+    <div class="filter-bar" role="group" aria-label="Filter projects by category">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="asphalt">Asphalt</button>
+      <button class="filter-btn" data-filter="concrete">Concrete</button>
+      <button class="filter-btn" data-filter="foundations">Foundations</button>
+      <button class="filter-btn" data-filter="new-construction">New Construction</button>
     </div>
 
+    <!-- Project Grid -->
+    <!-- HOW TO ADD A NEW CARD:
+         1. Copy one <article class="gallery-card"> block below.
+         2. Change data-category to match a filter button (e.g. "asphalt").
+         3. Update the image src, alt text, title, and description.
+         4. Drop the image into static/img/gallery/ and use its filename. -->
+    <div class="gallery-grid" id="galleryGrid">
+
+      <!-- Card: Comfort Inn Asphalt -->
+      <article class="gallery-card" data-category="asphalt">
+        <div class="gallery-img-wrap">
+          <img
+            src="{{ url_for('static', filename='img/gallery/comfortinn-asphalt.jpg') }}"
+            alt="Asphalt resurfacing at Comfort Inn parking lot"
+            loading="lazy"
+          />
+        </div>
+        <div class="gallery-card-info">
+          <span class="gallery-tag">Asphalt</span>
+          <h3 class="gallery-card-title">Comfort Inn Parking Lot</h3>
+          <p class="gallery-card-desc">
+            Full asphalt resurfacing and sealing for a commercial hotel parking
+            lot, restoring a safe and professional surface.
+          </p>
+        </div>
+      </article>
+
+      <!-- Card: Comfort Inn Interior -->
+      <!-- NOTE: Consider renaming comfortinn-reception.jpg → comfortinn-interior.jpg -->
+      <article class="gallery-card" data-category="new-construction">
+        <div class="gallery-img-wrap">
+          <img
+            src="{{ url_for('static', filename='img/gallery/comfortinn-reception.jpg') }}"
+            alt="Interior construction work at Comfort Inn"
+            loading="lazy"
+          />
+        </div>
+        <div class="gallery-card-info">
+          <span class="gallery-tag">New Construction</span>
+          <h3 class="gallery-card-title">Comfort Inn Interior Build-Out</h3>
+          <p class="gallery-card-desc">
+            Interior construction and finishing for a hotel lobby and reception
+            area, completed on schedule and on budget.
+          </p>
+        </div>
+      </article>
+
+      <!-- Card: Ford Heights Development -->
+      <article class="gallery-card" data-category="new-construction">
+        <div class="gallery-img-wrap">
+          <img
+            src="{{ url_for('static', filename='img/gallery/ford-heights-development.jpg') }}"
+            alt="Residential development site in Ford Heights"
+            loading="lazy"
+          />
+        </div>
+        <div class="gallery-card-info">
+          <span class="gallery-tag">New Construction</span>
+          <h3 class="gallery-card-title">Ford Heights Development</h3>
+          <p class="gallery-card-desc">
+            Site preparation and development for a residential construction
+            project in Ford Heights, IL.
+          </p>
+        </div>
+      </article>
+
+      <!-- Card: Homan Project -->
+      <!-- NOTE: Consider renaming homan.jpg to something descriptive,
+           e.g. homan-ave-asphalt.jpg, once you know what the photo shows -->
+      <article class="gallery-card" data-category="asphalt">
+        <div class="gallery-img-wrap">
+          <img
+            src="{{ url_for('static', filename='img/gallery/homan.jpg') }}"
+            alt="Asphalt and surface work on Homan Avenue"
+            loading="lazy"
+          />
+        </div>
+        <div class="gallery-card-info">
+          <span class="gallery-tag">Asphalt</span>
+          <h3 class="gallery-card-title">Homan Avenue Project</h3>
+          <p class="gallery-card-desc">
+            Street-level asphalt and surface work along Homan Avenue, improving
+            durability and curb appeal.
+          </p>
+        </div>
+      </article>
+
+    </div><!-- /gallery-grid -->
+
+    <!-- Shown when a filter has no matching cards -->
+    <p class="gallery-empty" id="galleryEmpty" aria-live="polite">
+      No projects in this category yet — check back soon.
+    </p>
+
     <div class="cta-box">
-      <h3>Looking for a<br />construction partner?</h3>
-      <a href="{{ url_for('quote') }}" class="btn btn-secondary"
-        >Request a Quote</a
-      >
+      <h3>Ready to Start Your Project?</h3>
+      <a href="{{ url_for('quote') }}" class="btn btn-primary">
+        Request a Free Estimate
+      </a>
     </div>
   </div>
 </section>
+
+<!-- Filter Script -->
+<script>
+  var filterBtns = document.querySelectorAll(".filter-btn");
+  var cards = document.querySelectorAll(".gallery-card");
+  var emptyMsg = document.getElementById("galleryEmpty");
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      filterBtns.forEach(function (b) { b.classList.remove("active"); });
+      btn.classList.add("active");
+
+      var filter = btn.getAttribute("data-filter");
+      var visible = 0;
+
+      cards.forEach(function (card) {
+        if (filter === "all" || card.getAttribute("data-category") === filter) {
+          card.style.display = "";
+          visible++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      emptyMsg.style.display = visible === 0 ? "block" : "none";
+    });
+  });
+</script>
 {% endblock %}
